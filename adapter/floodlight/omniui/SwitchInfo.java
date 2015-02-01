@@ -2,14 +2,13 @@ package net.floodlightcontroller.omniui;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import net.floodlightcontroller.util.MatchUtils;
 import net.floodlightcontroller.util.ActionUtils;
 import net.floodlightcontroller.core.web.StatsReply;
+import net.floodlightcontroller.core.web.serializers.OFInstructionListSerializer;
 
 import org.projectfloodlight.openflow.protocol.match.Match;
 import org.projectfloodlight.openflow.protocol.match.MatchField;
@@ -21,14 +20,12 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.projectfloodlight.openflow.util.HexString;
-import org.projectfloodlight.openflow.protocol.action.*;
 import org.projectfloodlight.openflow.types.DatapathId;
-
 import org.projectfloodlight.openflow.protocol.OFFlowStatsReply;
 import org.projectfloodlight.openflow.protocol.OFFlowStatsEntry;
 import org.projectfloodlight.openflow.protocol.OFPortStatsReply;
 import org.projectfloodlight.openflow.protocol.OFPortStatsEntry;
-
+import org.projectfloodlight.openflow.protocol.action.*;
 import org.projectfloodlight.openflow.protocol.action.OFAction;
 import org.projectfloodlight.openflow.protocol.action.OFAction.*;
 import org.projectfloodlight.openflow.protocol.OFVersion;
@@ -140,7 +137,7 @@ public class SwitchInfo extends JsonSerializer<SwitchInfo> {
                             serializeMatch(jGen, entry.getMatch());
                             jGen.writeEndObject();
                         } else {
-    //                        OFInstructionListSerializer.serializeInstructionList(jGen, entry.getInstructions());
+                            OFInstructionListSerializer.serializeInstructionList(jGen, entry.getInstructions());
                         }
 
                         jGen.writeEndObject();

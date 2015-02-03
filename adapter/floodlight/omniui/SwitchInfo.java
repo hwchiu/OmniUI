@@ -29,6 +29,8 @@ import org.projectfloodlight.openflow.protocol.action.*;
 import org.projectfloodlight.openflow.protocol.action.OFAction;
 import org.projectfloodlight.openflow.protocol.action.OFAction.*;
 import org.projectfloodlight.openflow.protocol.OFVersion;
+import org.projectfloodlight.openflow.protocol.OFStatsType;
+import org.projectfloodlight.openflow.protocol.OFStatsReply;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -381,14 +383,15 @@ public class SwitchInfo extends JsonSerializer<SwitchInfo> {
         }
     }
 
-    public void setOFStatisticsType(StatsReply reply) {
+    @SuppressWarnings("unchecked")
+    public void setOFStatType(OFStatsType type, Object reply) {
 
-        switch(reply.getStatType()) {
+        switch(type) {
             case PORT:
-                setOFStatisticsPort((List<OFPortStatsReply>) reply.getValues());
+                setOFStatisticsPort((List<OFPortStatsReply>)reply);
                 break;
             case FLOW:
-                setOFStatisticsFlow((List<OFFlowStatsReply>) reply.getValues());
+                setOFStatisticsFlow((List<OFFlowStatsReply>)reply);
                 break;
         }
     }

@@ -111,8 +111,8 @@ public class SwitchResource extends ServerResource {
             this.type = type;
         }
 
-        public Long getSwitchDpid() {
-            return this.dpid.getLong();
+        public DatapathId getSwitchDpid() {
+            return this.dpid;
         }
 
         public List<OFStatsReply> getStatisticsReply() {

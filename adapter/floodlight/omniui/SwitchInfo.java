@@ -103,7 +103,6 @@ public class SwitchInfo extends JsonSerializer<SwitchInfo> {
     //Flow tables
     private void setOFStatisticsFlow(List<OFFlowStatsReply> flowInfo) {
         this.flowList = new ArrayList<OFFlowStatsReply>(flowInfo.size());
-
         for(OFFlowStatsReply ofps: flowInfo) {
             flowList.add(ofps);
         }
